@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Mshop</string>
+    <string name="version">V.0.0.0</string>
+    <string name="jiatapp">\@ Jiat App</string>
+    <string name="slide_nav_home_titile">Home</string>
+    <string name="slide_nav_home_profile">Profile</string>
+    <string name="slide_nav_home_order">Order</string>
+    <string name="slide_nav_home_watchlist">Watchlist</string>
+    <string name="slide_nav_home_cart">Cart</string>
+    <string name="slide_nav_home_message">Message</string>
+    <string name="slide_nav_home_setting">Setting</string>
+    <string name="slide_nav_home_login">Login</string>
+    <string name="slide_nav_home_Logout">LogOut</string>
+    <string name="bottom_nav_home_titile">home</string>
+    <string name="bottom_nav_category_title">category</string>
+    <string name="bottom_nav_cart_titile">cart</string>
+    <string name="bottom_nav_profile_titile">profile</string>
+    <string name="search_hint">Search hear</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">home</string>
+    <string name="cart">cart</string>
+    <string name="category">category</string>
+    <string name="login">login</string>
+    <string name="message">message</string>
+    <string name="order">order</string>
+    <string name="profile">profile</string>
+    <string name="setting">setting</string>
+    <string name="watchlist">watchlist</string>
+    <string name="login_to_eshop">Login To Eshop</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="text_create_account">or, create new account?</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="join_eshop">Join Eshop</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_btn">Sign In</string>
+    <string name="already_have_on_account">Already have on Account?</string>
+    <string name="name">Name</string>
+    <string name="password_must_be_6_charactors">password must be 6 charactors</string>
+    <string name="retype_password">ReType password</string>
+</resources>

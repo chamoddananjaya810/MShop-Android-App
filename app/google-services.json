@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902673126306",
+    "project_id": "mshop-21c46",
+    "storage_bucket": "mshop-21c46.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902673126306:android:804ad59a25c19acc3658fb",
+        "android_client_info": {
+          "package_name": "lk.chamod.mshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQQRZIv4oal7_b0ABciCrsZwG72Hydv7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

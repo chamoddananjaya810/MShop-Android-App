@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:id="@+id/side_nav_group_main"
+        android:checkableBehavior="single"
+
+        >
+        <item
+            android:id="@+id/side_nav_home"
+            android:checked="true"
+            android:icon="@drawable/home_24px"
+            android:iconTint="@drawable/nav_custom_icon"
+
+            android:title="@string/slide_nav_home_titile"
+            android:checkable="true"
+            />
+        <item
+            android:id="@+id/side_nav_profile"
+            android:icon="@drawable/user_attributes_24px"
+            android:title="@string/slide_nav_home_profile"
+
+            android:visible="true"
+            android:checkable="true"
+            />
+        <item
+            android:id="@+id/side_nav_order"
+            android:icon="@drawable/orders_24px"
+            android:title="@string/slide_nav_home_order"
+            android:visible="true"
+            android:checkable="true"
+            />
+        <item
+            android:id="@+id/side_nav_watchlist"
+            android:icon="@drawable/favorite_24px"
+            android:title="@string/slide_nav_home_watchlist"
+            android:visible="true"
+            android:checkable="true"
+            />
+        <item
+            android:id="@+id/side_nav_cart"
+            android:icon="@drawable/shopping_cart_24px"
+            android:title="@string/slide_nav_home_cart"
+            android:visible="true"
+            android:checkable="true"
+            />
+        <item
+            android:id="@+id/side_nav_message"
+            android:icon="@drawable/business_messages_24px"
+
+            android:title="@string/slide_nav_home_message"
+            android:visible="true"
+            android:checkable="true"
+            />
+        <item
+
+            android:id="@+id/side_nav_setting"
+            android:icon="@drawable/settings_brightness_24px"
+
+            android:title="@string/slide_nav_home_setting"
+            android:visible="true"
+            android:checkable="true"
+            />
+
+
+    </group>
+    <group android:id="@+id/side_nav_auth">
+        <item
+            android:id="@+id/side_nav_login"
+            android:icon="@drawable/login_24px"
+
+            android:title="@string/slide_nav_home_login"
+            android:checkable="true"
+        />
+        <item
+            android:id="@+id/side_nav_logout"
+
+
+            android:icon="@drawable/switch_account_24px"
+            android:title="@string/slide_nav_home_Logout"
+            android:visible="true"
+
+            android:checkable="true"/>
+
+    </group>
+</menu>
