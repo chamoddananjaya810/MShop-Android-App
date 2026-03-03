@@ -2,6 +2,7 @@ package lk.chamod.mshop.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,10 +22,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import lk.chamod.mshop.R;
 import lk.chamod.mshop.databinding.ActivityMainBinding;
@@ -38,9 +43,13 @@ import lk.chamod.mshop.fragment.orderFragment;
 import lk.chamod.mshop.fragment.profileFragment;
 import lk.chamod.mshop.fragment.settingFragment;
 import lk.chamod.mshop.fragment.watchlistFragment;
+import lk.chamod.mshop.model.User;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
 
+    private FirebaseAuth firebaseAuth;
+
+    private FirebaseFirestore firebaseFirestore;
 
     private ActivityMainBinding binding;
     private NavItemHeaderBinding navItemHeaderBinding;
@@ -58,16 +67,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
 
-binding=ActivityMainBinding.inflate(getLayoutInflater());
-setContentView(binding.getRoot());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-View headerView =binding.sideNavigationView.getHeaderView(0);
-navItemHeaderBinding =NavItemHeaderBinding.bind(headerView);
-//navItemHeaderBinding.
+        View headerView = binding.sideNavigationView.getHeaderView(0);
+        navItemHeaderBinding = NavItemHeaderBinding.bind(headerView);
+        //navItemHeaderBinding.
 
 
         drawerLayout = binding.draowerLayout;
-        toolbar =binding.toolbar;
+        toolbar = binding.toolbar;
         navigationView = binding.sideNavigationView;
         bottomNavigationView = binding.bottmNavigationView;
 
@@ -111,6 +120,44 @@ navItemHeaderBinding =NavItemHeaderBinding.bind(headerView);
             bottomNavigationView.getMenu().findItem(R.id.bottom_nav_home).setChecked(true);
 
         }
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        if (currentUser != null) {
+
+            firebaseFirestore.collection("users").document(currentUser.getUid())
+                    .get().addOnSuccessListener(ds -> {
+                        if (ds.exists()) {
+                            User user = ds.toObject(User.class);
+                            navItemHeaderBinding.headerUserName.setText(user.getName());
+                            navItemHeaderBinding.headerUserEmail.setText(user.getEmail());
+
+                            Glide.with(MainActivity.this)
+                                    .load(user.getProfilePicUrl())
+                                    .circleCrop()
+                                    .into(navItemHeaderBinding.headerProfile);
+                        } else {
+
+                            Log.e("firestore", "Document does not exist");
+                        }
+
+
+                    }).addOnFailureListener(e -> {
+                        Log.e("firestore", "error" + e.getMessage());
+                    });
+
+            navigationView.getMenu().findItem(R.id.side_nav_login).setChecked(false);
+
+            navigationView.getMenu().findItem(R.id.side_nav_profile).setChecked(true);
+            navigationView.getMenu().findItem(R.id.side_nav_order).setChecked(true);
+            navigationView.getMenu().findItem(R.id.side_nav_watchlist).setChecked(true);
+            navigationView.getMenu().findItem(R.id.side_nav_cart).setChecked(true);
+            navigationView.getMenu().findItem(R.id.side_nav_message).setChecked(true);
+            navigationView.getMenu().findItem(R.id.side_nav_logout).setChecked(true);
+
+
+        }
 
 
     }
@@ -120,32 +167,39 @@ navItemHeaderBinding =NavItemHeaderBinding.bind(headerView);
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
 
-       Menu navmenu = navigationView.getMenu();
-      Menu bottomnavmenu = bottomNavigationView.getMenu();
+        Menu navmenu = navigationView.getMenu();
+        Menu bottomnavmenu = bottomNavigationView.getMenu();
 
-      for (int i=0; i<navmenu.size(); i++){
+        for (int i = 0; i < navmenu.size(); i++) {
 
-          navmenu.getItem(i).setChecked(true);
-      }
+            navmenu.getItem(i).setChecked(true);
+        }
 
-      for (int i=0; i<bottomnavmenu.size(); i++){
-          bottomnavmenu.getItem(i).setChecked(false);
+        for (int i = 0; i < bottomnavmenu.size(); i++) {
+            bottomnavmenu.getItem(i).setChecked(false);
 
-      }
-
+        }
 
 
         navigationView.setCheckedItem(-1);
         if (itemId == R.id.side_nav_home || itemId == R.id.bottom_nav_home) {
             loadFragment(new homeFragment());
 
-           navigationView.getMenu().findItem(R.id.side_nav_home).setChecked(true);
+            navigationView.getMenu().findItem(R.id.side_nav_home).setChecked(true);
 
 
             bottomNavigationView.getMenu().findItem(R.id.bottom_nav_home).setChecked(true);
 
 
         } else if (itemId == R.id.side_nav_profile || itemId == R.id.bottom_nav_profile) {
+            if (firebaseAuth.getCurrentUser()==null){
+
+              Intent intent =  new Intent(MainActivity.this,SignInActivity.class);
+           startActivity(intent);
+           finish();
+
+            }
+
             loadFragment(new profileFragment());
 
 
@@ -162,6 +216,15 @@ navItemHeaderBinding =NavItemHeaderBinding.bind(headerView);
 
             navigationView.getMenu().findItem(R.id.side_nav_order).setChecked(true);
         } else if (itemId == R.id.side_nav_cart || itemId == R.id.bottom_nav_cart) {
+            if (firebaseAuth.getCurrentUser()==null){
+
+                Intent intent =  new Intent(MainActivity.this,SignInActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+
+
             loadFragment(new cartFragment());
             navigationView.getMenu().findItem(R.id.side_nav_cart).setChecked(true);
             bottomNavigationView.getMenu().findItem(R.id.bottom_nav_cart).setChecked(true);
@@ -176,10 +239,16 @@ navItemHeaderBinding =NavItemHeaderBinding.bind(headerView);
             loadFragment(new categoryFragment());
             bottomNavigationView.getMenu().findItem(R.id.bottom_nav_category).setChecked(true);
         } else if (itemId == R.id.side_nav_login) {
-      Intent intent =new Intent(MainActivity.this, SignInActivity.class);
-      startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+            startActivity(intent);
         } else if (itemId == R.id.side_nav_logout) {
+            firebaseAuth.signOut();
+            loadFragment(new homeFragment());
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.slide_nav_menu);
 
+            navigationView.removeHeaderView(navItemHeaderBinding.getRoot());
+            navigationView.inflateHeaderView(R.layout.nav_item_header);
         }
 
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

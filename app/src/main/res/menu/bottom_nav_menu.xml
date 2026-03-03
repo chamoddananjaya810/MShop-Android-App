@@ -4,22 +4,19 @@
         android:id="@+id/bottom_nav_home"
         android:icon="@drawable/home_24px"
         android:title="@string/bottom_nav_home_titile"
-        android:visible="true"
-        android:checkable="true"
-        />
-    <item
-        android:id="@+id/bottom_nav_cart"
-        android:icon="@drawable/list_alt_24px"
-        android:title="@string/bottom_nav_category_title"
-        android:visible="true"
-        android:checkable="true"
+
         />
     <item
         android:id="@+id/bottom_nav_category"
+        android:icon="@drawable/list_alt_24px"
+        android:title="@string/bottom_nav_category_title"
+
+        />
+    <item
+        android:id="@+id/bottom_nav_cart"
         android:icon="@drawable/shopping_cart_24px"
         android:title="@string/bottom_nav_cart_titile"
-        android:visible="true"
-        android:checkable="true"
+
         />
 
     <item
@@ -27,6 +24,5 @@
         android:icon="@drawable/user_attributes_24px"
         android:title="@string/bottom_nav_profile_titile"
 
-        android:visible="true"
-        android:checkable="true"/>
+        />
 </menu>

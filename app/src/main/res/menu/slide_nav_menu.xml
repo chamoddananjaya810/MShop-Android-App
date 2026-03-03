@@ -20,28 +20,28 @@
             android:icon="@drawable/user_attributes_24px"
             android:title="@string/slide_nav_home_profile"
 
-            android:visible="true"
+            android:visible="false"
             android:checkable="true"
             />
         <item
             android:id="@+id/side_nav_order"
             android:icon="@drawable/orders_24px"
             android:title="@string/slide_nav_home_order"
-            android:visible="true"
+            android:visible="false"
             android:checkable="true"
             />
         <item
             android:id="@+id/side_nav_watchlist"
             android:icon="@drawable/favorite_24px"
             android:title="@string/slide_nav_home_watchlist"
-            android:visible="true"
+            android:visible="false"
             android:checkable="true"
             />
         <item
             android:id="@+id/side_nav_cart"
             android:icon="@drawable/shopping_cart_24px"
             android:title="@string/slide_nav_home_cart"
-            android:visible="true"
+            android:visible="false"
             android:checkable="true"
             />
         <item
@@ -49,7 +49,7 @@
             android:icon="@drawable/business_messages_24px"
 
             android:title="@string/slide_nav_home_message"
-            android:visible="true"
+            android:visible="false"
             android:checkable="true"
             />
         <item
@@ -78,7 +78,7 @@
 
             android:icon="@drawable/switch_account_24px"
             android:title="@string/slide_nav_home_Logout"
-            android:visible="true"
+            android:visible="false"
 
             android:checkable="true"/>
 
