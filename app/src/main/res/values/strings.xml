@@ -41,4 +41,10 @@
     <string name="name">Name</string>
     <string name="password_must_be_6_charactors">password must be 6 charactors</string>
     <string name="retype_password">ReType password</string>
+    <string name="email">Email</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="postal_code">Postal code</string>
+    <string name="contact_no">Contact No</string>
 </resources>

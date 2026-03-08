@@ -25,10 +25,24 @@ public class Product {
 
     private List<String> images;
 
-    private  int stockCount;
+    private int stockCount;
 
     private boolean status;
 
     private double rating;
 
+    private List<Attribute> attribute;
+
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Attribute {
+        private String name;
+
+        private String type;
+
+        private List<String> values;
+    }
 }

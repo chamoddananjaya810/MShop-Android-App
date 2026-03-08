@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mshop">
         <activity
+            android:name=".fragment.CheckoutFragment"
+            android:exported="false" />
+        <activity
             android:name=".activity.SignUpActivity"
             android:exported="false" />
         <activity
